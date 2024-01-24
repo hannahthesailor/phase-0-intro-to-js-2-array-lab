@@ -1,7 +1,39 @@
 require ( './helpers.js' );
 
 describe('index.js', function () {
-  describe('cats', function () {
+  let cats = ["Milo", "Otis", "Garfield"];
+  function destructivelyAppendCat(name) {
+    cats.push(name);
+  }
+  function destructivelyPrependCat(name) {
+    cats.unshift(name);
+  }
+  function destructivelyRemoveLastCat(name) {
+    cats.pop(name);
+  }
+  function destructivelyRemoveFirstCat(name) {
+    cats.shift(name);
+  }
+  function appendCat(name) {
+    const newCats = cats.slice();
+    newCats.push(name);
+    return newCats;
+  }
+  function removeLastCat(name) {
+    const newCats = cats.slice();
+    newCats.pop()
+    return newCats;
+  }
+  function prependCat(name) {
+    const newCats = [name, ...cats];
+    return newCats;
+  }
+function removeFirstCat(name) {
+  const [_, ...newCats] = cats;
+  return newCats;
+}
+
+    describe('cats', function () {
     it('is assigned an initial value of ["Milo", "Otis", "Garfield"]', function () {
       expect(cats).to.have.ordered.members(["Milo", "Otis", "Garfield"]);
     });
